@@ -1,0 +1,16 @@
+{
+ "refreshIntervalSec": 2,
+ "redRefreshIntervalSec": 1,
+ "memBlueThreshold": 0.7,
+ "memRedThreshold": 0.95,
+ "memRedFreeGB": 5,
+ "usageMode": "system",
+ "sysBlueThreshold": 0.6,
+ "sysRedThreshold": 0.85,
+ "sysRedFreeGB": 3,
+ "cpuOrangeThreshold": 0.5,
+ "cpuRedThreshold": 0.9,
+ "swapWarnThreshold": 0.5,
+ "alertEnabled": true,
+ "alertSustainSec": 15
+}

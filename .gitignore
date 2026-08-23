@@ -1,0 +1,5 @@
+# 运行时日志
+membar.log
+
+# 构建产物（make_dist.sh 可再生成）
+dist/
