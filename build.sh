@@ -19,7 +19,15 @@ if [ -f "$(dirname "$0")/AppIcon.icns" ]; then
 fi
 
 echo "==> 签名(ad-hoc) ..."
-codesign --force --sign - "$APP" >/dev/null 2>&1 || true
+_sig_err="$(mktemp -t membar-codesign)"
+if codesign --force --sign - "$APP" 2>"$_sig_err"; then
+    rm -f "$_sig_err"
+else
+    # 不静默吞掉：签名失败不阻断构建，但要让用户看到原因（否则 Gatekeeper 拦截时无从排查）
+    echo "⚠️  ad-hoc 签名失败（应用仍可运行，但 Gatekeeper 可能拦截）："
+    sed 's/^/    /' "$_sig_err"
+    rm -f "$_sig_err"
+fi
 
 echo "==> 停止旧实例 ..."
 pkill -f "$APP/Contents/MacOS/MemBar" 2>/dev/null || true

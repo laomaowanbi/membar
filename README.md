@@ -79,7 +79,7 @@ bash ~/membar/make_icon.sh      # 重新生成图标
 
 分发安装到其他 Mac：
 ```bash
-unzip MemBar-v2.0.zip -d ~/Applications/
+unzip MemBar-v2.1.zip -d ~/Applications/
 xattr -dr com.apple.quarantine ~/Applications/MemBar.app   # 如被拦截
 open ~/Applications/MemBar.app
 ```

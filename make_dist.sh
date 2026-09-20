@@ -2,7 +2,12 @@
 # 打包 MemBar 为可分发的 zip（含版本号）
 set -e
 cd "$(dirname "$0")"
-VERSION="2.1"
+# 版本号单一来源：从 Info.plist 读取，避免与打包脚本各改一处导致打错版本
+VERSION="$(plutil -extract CFBundleShortVersionString raw Info.plist 2>/dev/null || true)"
+if [ -z "$VERSION" ]; then
+    echo "❌ 无法从 Info.plist 读取 CFBundleShortVersionString，请检查 Info.plist" >&2
+    exit 1
+fi
 APP="$HOME/Applications/MemBar.app"
 DIST="$HOME/membar/dist"
 
